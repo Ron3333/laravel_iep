@@ -13,11 +13,11 @@ return new class extends Migration
     {
          Schema::table('posts', function (Blueprint $table) {
             // Añade aquí tu nueva columna
+            
              $table->string('item',20)->nullable()->after('image');
              // $table->string('telefono')->nullable();
         });
     }
-
     /**
      * Reverse the migrations.
      */
