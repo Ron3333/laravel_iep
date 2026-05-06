@@ -13,9 +13,8 @@ return new class extends Migration
     {
          Schema::table('posts', function (Blueprint $table) {
             // Añade aquí tu nueva columna
-            
              $table->string('item',20)->nullable()->after('image');
-             // $table->string('telefono')->nullable();
+            
         });
     }
     /**
@@ -23,7 +22,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-         Schema::table('posts', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
             $table->dropColumn('item');
         });
     }
