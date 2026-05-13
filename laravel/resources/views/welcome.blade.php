@@ -113,8 +113,12 @@
                         <li>
                             <a href="/intro">BIO</a>
                         </li>
+                        
                          <li>
                             <a href="{{ route('bio') }}">BIO-2</a>
+                        </li>
+                         <li>
+                            <a href="{{ route('post.create') }}">Crear Post</a>
                         </li>
                     </ul>
                     <ul class="flex gap-3 text-sm leading-normal">
