@@ -105,9 +105,20 @@ class PostController extends Controller
 
        dd($validated->errors());
         */
-
+/*
        Post::create($request->validated());
         return to_route("post.index");
+*/
+        $data = $request->validated();
+   
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->extension();
+            $file->move(public_path('image'), $filename);
+            $data['image'] = $filename;
+        }
+        Post::create($data);
+        return to_route("post.index")->with('status', 'Post creado correctamente');
 
     }
 

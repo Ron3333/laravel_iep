@@ -4,8 +4,8 @@
 
  @include('dashboard.fragment._errors-form')
 
- <form action="{{ route('post.store') }}" method="post">
-    @include('dashboard.post._form')
+ <form action="{{ route('post.store') }}" method="post"  enctype="multipart/form-data">
+    @include('dashboard.post._form',["task" => "created"])
  </form>
  
 @endsection

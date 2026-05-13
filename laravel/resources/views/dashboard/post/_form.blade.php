@@ -29,6 +29,12 @@
 @if (isset($task) && $task == 'edit')
  <label for="">Image</label>
  <input type="file" name="image">
+  <br>
+ <img src="{{ asset('image/' . $post->image) }}" alt="" width="200">
+@endif
+@if (isset($task) && $task == 'created')
+ <label for="">Image</label>
+ <input type="file" name="image">
 @endif
 <br>
 <button type="submit">Enviar</button>
