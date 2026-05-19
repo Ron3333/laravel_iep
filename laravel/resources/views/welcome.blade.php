@@ -120,6 +120,9 @@
                          <li>
                             <a href="{{ route('post.create') }}">Crear Post</a>
                         </li>
+                        <li>
+                            <a href="{{ route('category.create') }}">Crear Categoria</a>
+                        </li>
                     </ul>
                     <ul class="flex gap-3 text-sm leading-normal">
                         <li>

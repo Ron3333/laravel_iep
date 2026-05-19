@@ -175,6 +175,6 @@ class PostController extends Controller
     {
         //dd($post);
         $post->delete();
-        return to_route('post.index');
+        return to_route('post.index')->with('status', 'Se elimino el Post');;
     }
 }
