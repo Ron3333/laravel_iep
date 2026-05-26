@@ -148,10 +148,10 @@ class PostController extends Controller
             $data["image"] = time().".".$data["image"]->extension();
             $request->image->move(public_path("image"), $data["image"] );
         }
- 
+        //session(['key-xx' => 'ENV-555']);
         $post->update($data);
-        
-        return to_route("post.index");
+        //$request->session()->flash('status2',"Registro actualizado.");
+        return to_route("post.index")->with('status',"Registro actualizado.");
     }
 
     /*
@@ -175,6 +175,7 @@ class PostController extends Controller
     {
         //dd($post);
         $post->delete();
-        return to_route('post.index')->with('status', 'Se elimino el Post');;
+       // session()->forget('key-xx');
+        return to_route('post.index')->with('status', 'Se elimino el Post');
     }
 }

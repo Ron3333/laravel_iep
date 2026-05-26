@@ -10,8 +10,17 @@
 </head>
 <body>
     @if (session('status'))
+    <br>
      {{ session('status') }}
     @endif
+     @if (session('status2'))
+    <br>
+     {{ session('status2') }}
+    @endif
+    <br>
+    @session('key-xx')
+         {{ $value }}
+    @endsession
     @yield('content')
 </body>
 </html>
