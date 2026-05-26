@@ -8,14 +8,16 @@
 <body>
     <h1>DASHBOARD</h1>
     <form method="POST" action="{{ route('logout') }}">
-    @csrf
-    <button type="submit">
-            Cerrar Sesión
-    </button>
-    <br>
+        @csrf
+        <button type="submit">
+                Cerrar Sesión
+        </button>
+    </form>
+     <br>
     <a href="{{ route('post.index') }}">Ver Post</a>
     <br>
     <a href="{{ route('category.index') }}">Ver Categoria</a>
-</form>
+    <br>
+    <a href="/">INICIO</a>
 </body>
 </html>
