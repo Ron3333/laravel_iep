@@ -4,6 +4,11 @@ use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Profile;
+use App\Models\Category;
+use App\Models\Tag;
+use App\Http\Controllers\User\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -54,6 +59,10 @@ Route::middleware([App\Http\Middleware\TestMiddleware::class])->group(function (
     });
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth',App\Http\Middleware\UserIsAdminMiddleware::class]], function () {
     Route::get('/', function () {
@@ -65,6 +74,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth',App\Http\Middlewa
         'category' => App\Http\Controllers\Dashboard\CategoryController::class,
     ]);
 });
+
+
 
 Route::get('/db', function () {
 /*
@@ -132,3 +143,50 @@ dd($post8);
 
 });
 
+Route::get('/perfil', function () {
+    $user = User::find(1);
+    $perfil = $user->profile;
+
+    $profile = Profile::find(1);
+    $user = $profile->user;
+    dd($user->email);
+});
+
+Route::get('/relacion', function () {
+    $category = Category::find(4);
+    $posts = $category->posts;
+    //dd($posts);
+    foreach($posts as $post){
+        echo $post->title. "<br>";
+    }
+
+    $post = Post::find(1);
+    $category = $post->category;
+    dd($category->title);
+
+});
+
+Route::get('/muchos', function () {
+   $post = Post::find(4);
+   $tags = $post->tags;
+   //dd($tags);
+   foreach($tags as $tag){
+      echo $tag->name. " <br>";
+   }
+    $tag = Tag::find(1);
+    $posts = $tag->posts;
+    foreach($posts as $post){
+      echo $post->id. " <br>";
+   }
+
+   $post = Post::find(5);
+   $tag1 = Tag::find(1);
+   $tag2 = Tag::find(2);
+   $tag3 = Tag::find(3);
+   //$post->tags()->attach($tag);
+   //$post->tags()->detach($tag);
+
+   //$post->tags()->sync([$tag1,$tag2,$tag3]);
+   $post->tags()->sync([1,2,3,4]);
+
+});
